@@ -909,8 +909,6 @@ function toggleMusic() {
 }
 
 // ── RSVP ──
-const API_BASE = (window.__RSVP_API_BASE__ || '').trim();
-
 let guestSide = '';
 function selectSide(side) {
   guestSide = side;
@@ -956,8 +954,9 @@ async function submitRSVP() {
   submitBtn.textContent = 'Ուղարկվում է...';
 
   try {
-    const endpoint = API_BASE ? `${API_BASE}/api/rsvp` : '/api/rsvp';
-    const res = await fetch(endpoint, {
+    const API_BASE = 'https://backendmhertatev.onrender.com';
+
+    const res = await fetch(`${API_BASE}/api/rsvp`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
